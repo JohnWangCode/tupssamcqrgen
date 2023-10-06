@@ -80,15 +80,14 @@
 
             var qrtext = document.getElementById("qr-text").value;
             // var qrtext = qrtext.replaceAll(' ', '\u000A \u000D');
-            var qrtext = qrtext.replaceAll('  ', ' ');
-            //EXTREMELY LAZY DOUBLE SPACE REMOVAL, IM TIRED
-            var qrtext = qrtext.replaceAll(' ', '\u000D');
+            var array = qrtext.match(/[^\s]+/g);
+            var newqrtext = array.join('\u000D')
 
-            document.getElementById("qr-result").innerHTML = "QR code for " +'\u000A' + '\u000D' + qrtext;
+            document.getElementById("qr-result").innerHTML = "QR code for " +'\u000A' + '\u000D' + newqrtext;
             qr.set({
                 foreground: 'black',
                 size: 256,
-                value: qrtext
+                value: newqrtext
             });
         }
     </script>
@@ -99,4 +98,3 @@
 
 </div>
 <link rel="stylesheet" href="./mystyle.css">
- 
